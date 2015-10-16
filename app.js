@@ -3,13 +3,15 @@
  * 
  * IR Remote Web Service
  * 
+ * based on:
  * @author Michael Vartan
  * @version 1.0.0 
  */
 
 var express = require('express');
 var app = express();
-var sys = require('sys')
+var sys = require('sys');
+var logger = require('morgan');
 var exec = require('child_process').exec;
 
 /**
@@ -74,9 +76,10 @@ exec("irsend list \"\" \"\"", getDevice);
 // Define static HTML files
 app.use(express.static(__dirname + '/html'));
 
+// Define logger
+app.use(logger('common'));
 
-
-// define GET request for /send/deviceName/buttonName
+// Define GET request for /send/deviceName/buttonName
 app.get('/send/:device/:key', function(req, res) {
 
   var deviceName = req.param("device");

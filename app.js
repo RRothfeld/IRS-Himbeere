@@ -114,5 +114,5 @@ app.get('/send/:device/:key', function(req, res) {
 
 }); // end define GET request for /send/deviceName/buttonName
 
-// Listen on port 80
-app.listen('80');
+// Listen on port 3000
+app.listen('3000');

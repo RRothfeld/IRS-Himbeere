@@ -1,39 +1,38 @@
 
 
-var changeTab = function(event) {
-  event.preventDefault()
-  var link = this;
-  var $link = $(link);
-  var name = $link.text().trim();
-  var remote = name.toLowerCase();
+// var changeTab = function(event) {
+//   event.preventDefault()
+//   var link = this;
+//   var $link = $(link);
+//   var name = $link.text().trim();
+//   var remote = name.toLowerCase();
 
 
 
-  $("#tabBar li").removeClass("active");
-  $link.parents("li").addClass("active");
-  $(".remote-screen").addClass("hidden");
-  $("#"+remote).removeClass("hidden");
-  document.title = "Remote - "+name;
-  window.scroll(0);
-};
+//   $("#tabBar li").removeClass("active");
+//   $link.parents("li").addClass("active");
+//   $(".remote-screen").addClass("hidden");
+//   $("#"+remote).removeClass("hidden");
+//   document.title = "Remote - "+name;
+//   window.scroll(0);
+// };
 
-$("#tabBar a").bind("click touchstart",changeTab)
+// $("#tabBar a").bind("click touchstart",changeTab)
 
 
 $(".remote-screen a").click(function(event) {
-var $this = $(this);
-  document.body.style.opacity = "0.5";
+	var $this = $(this);
+	document.body.style.opacity = "0.5";
 
-$.ajax({
-  url: $(this).attr("href"),
-}).done(function(data) {
-	console.log(data);
-	console.log($this);
-  document.body.style.opacity="1"
+	$.ajax({
+		url: $(this).attr("href"),
+	}).done(function(data) {
+		document.body.style.opacity="1"
+	});
+	event.preventDefault()
+	return true;
 });
-event.preventDefault()
-return true;
-});
+
 /**
  * Converts :hover CSS to :active CSS on mobile devices.
  * Otherwise, when tapping a button on a mobile device, the button stays in
@@ -65,64 +64,66 @@ function hoverTouchUnstick() {
     }
   }
 }
-  hoverTouchUnstick();
+hoverTouchUnstick();
+
 var sendKey = function(remote_name, key_name) {
     document.body.style.opacity = "0.5";
-
-$.ajax({
-  url: "/send/"+remote_name+"/"+key_name,
-}).done(function(data) {
-  console.log(data);
-  document.body.style.opacity="1"
-});  
+	$.ajax({
+	  url: "/send/"+remote_name+"/"+key_name,
+	}).done(function(data) {
+	  console.log(data);
+	  document.body.style.opacity="1"
+	});  
 }
-$("#type").bind('change input',function(event) {
-  var $this = $(this);
-  var text = this.value;
-  var deviceName = "vizio";
-  //console.log("\""+text+"\"")
-  $this.val("");
-  var placeHolderText = $this.attr("placeholder");
-  if(placeHolderText === "Type here") placeHolderText = "";
-  if(text === "") text = " ";
-  $this.removeClass("text-center").addClass("text-right")
-  if(placeHolderText.length>30)
-    placeHolderText = placeHolderText.substring(1);
-  $this.attr("placeholder",placeHolderText+text)
-  if(text.length>0) {
-    switch(text) {
-      case " ":
-        text = "SPACE";
-        deviceName = "vizio_2";
-        break;
-      case ".":
-        text = "DOT";
-        break;
-      case "/":
-        text = "SLASH";
-        break;
-    }
-    sendKey(deviceName, text.toUpperCase())
-  }
 
-  //console.log(text)
-})
-$("#type").bind('keyup', function(event) {
-  var keyName = "";
-  $type = $("#type");
-  placeHolderText = $type.attr("placeholder");
-  switch(event.which) {
-    case 8:
-      keyName = "BACKSPACE";
-      if(placeHolderText.length>0)
-        $type.attr("placeholder", placeHolderText.substr(0,placeHolderText.length-1));
-      break;
-    case 13:
-      keyName = "ENTER";
-      $type.attr("placeholder", "");
-      break;
+// $("#type").bind('change input',function(event) {
+//   var $this = $(this);
+//   var text = this.value;
+//   var deviceName = "vizio";
+//   //console.log("\""+text+"\"")
+//   $this.val("");
+//   var placeHolderText = $this.attr("placeholder");
+//   if(placeHolderText === "Type here") placeHolderText = "";
+//   if(text === "") text = " ";
+//   $this.removeClass("text-center").addClass("text-right")
+//   if(placeHolderText.length>30)
+//     placeHolderText = placeHolderText.substring(1);
+//   $this.attr("placeholder",placeHolderText+text)
+//   if(text.length>0) {
+//     switch(text) {
+//       case " ":
+//         text = "SPACE";
+//         deviceName = "vizio_2";
+//         break;
+//       case ".":
+//         text = "DOT";
+//         break;
+//       case "/":
+//         text = "SLASH";
+//         break;
+//     }
+//     sendKey(deviceName, text.toUpperCase())
+//   }
 
-    default: return;
-  }
-  sendKey("vizio", keyName);
-})
+//   //console.log(text)
+// })
+
+// $("#type").bind('keyup', function(event) {
+//   var keyName = "";
+//   $type = $("#type");
+//   placeHolderText = $type.attr("placeholder");
+//   switch(event.which) {
+//     case 8:
+//       keyName = "BACKSPACE";
+//       if(placeHolderText.length>0)
+//         $type.attr("placeholder", placeHolderText.substr(0,placeHolderText.length-1));
+//       break;
+//     case 13:
+//       keyName = "ENTER";
+//       $type.attr("placeholder", "");
+//       break;
+
+//     default: return;
+//   }
+//   sendKey("vizio", keyName);
+// })

@@ -1,16 +1,16 @@
 /* General Scripts */
 $(".remote-screen a").click(function(event) {    
- var $this = $(this);    
- document.body.style.opacity = "0.5";    
-   
- $.ajax({    
+ var $this = $(this);
+ document.body.style.opacity = "0.5";
+
+ $.ajax({
    url: $(this).attr("href"),    
  }).done(function(data) {    
-   document.body.style.opacity="1"   
+   document.body.style.opacity="1";
  });   
- event.preventDefault()    
- return true;    
-});    
+ event.preventDefault();
+ return true;
+});
    
 /**    
  * Converts :hover CSS to :active CSS on mobile devices.   
@@ -43,16 +43,53 @@ function hoverTouchUnstick() {
     }    
   }    
 }    
-hoverTouchUnstick();   
+//hoverTouchUnstick();
    
-var sendKey = function(remote_name, key_name) {    
+function sendKey(remote_name, key_name) {    
     document.body.style.opacity = "0.5";   
  $.ajax({    
    url: "/send/"+remote_name+"/"+key_name,   
- }).done(function(data) {    
-   console.log(data);    
+ }).done(function(data) {
    document.body.style.opacity="1"   
  });     
 }
 
+/* Top Navigation */
+$(".nav-btn").click(function(event) {
+  document.body.style.opacity = "0.5";
+  $(".remote-screen").hide();
+
+  var code = $(this).attr('id');
+  if(code == "an-aus") $("#an-aus-content").show();
+  if(code == "favoriten") $("#favoriten-content").show();
+  if(code == "fernsehen") $("#fernsehen-content").show();
+  if(code == "alle-befehle") $("#alle-befehle-content").show();
+
+  document.body.style.opacity = "1";
+});
+
 /* Specific Buttons */
+$("#Yamaha_RAX23_WV50020-KEY_POWER-5x").click(function() {
+  for (var i = 5; i > 0; i--) {
+    sendKey(Yamaha_RAX23_WV50020,KEY_POWER);
+  };
+});
+
+$("#Yamaha_RAX23_WV50020-KEY_POWER-5x-mini").click(function() {
+  for (var i = 5; i > 0; i--) {
+    sendKey(Yamaha_RAX23_WV50020,KEY_POWER);
+  };
+});
+
+$("#Yamaha_RAX23_WV50020-KEY_VOLUMEUP-5x").click(function() {
+  for (var i = 5; i > 0; i--) {
+    sendKey(Yamaha_RAX23_WV50020,KEY_VOLUMEUP);
+  };
+});
+
+$("#Yamaha_RAX23_WV50020-KEY_VOLUMEDOWN-5x").click(function() {
+  for (var i = 5; i > 0; i--) {
+    sendKey(Yamaha_RAX23_WV50020,KEY_VOLUMEDOWN);
+  };
+});
+

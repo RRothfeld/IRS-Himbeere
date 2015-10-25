@@ -9,24 +9,24 @@
 
     <title>IRS Himbeere</title>
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/favicon/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/favicon/manifest.json">
-    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#595457">
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="favicon/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="favicon/manifest.json">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#595457">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png">
+    <meta name="msapplication-TileImage" content="favicon/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Bootstrap core CSS -->
@@ -46,23 +46,27 @@
       <div class="container-fluid">
         <ul class="nav navbar-nav col-xs-12">
           <li class="col-xs-3 text-center">
-            <a href="#"><i class="fa fa-power-off"></i><span class="hidden-xs"> An/Aus</span></a>
+            <a href="#" id="an-aus" class="nav-btn">
+              <i class="fa fa-power-off"></i><span class="hidden-xs"> An/Aus</span></a>
           </li>
           <li class="col-xs-3 text-center">
-            <a href="#"><i class="fa fa-star"></i><span class="hidden-xs"> Favoriten</span></a>
+            <a href="#" id="favoriten" class="nav-btn">
+              <i class="fa fa-star"></i><span class="hidden-xs"> Favoriten</span></a>
           </li>
           <li class="col-xs-3 text-center">
-            <a href="#"><i class="fa fa-desktop"></i><span class="hidden-xs"> Fernsehen</span></a>
+            <a href="#" id="fernsehen" class="nav-btn">
+              <i class="fa fa-desktop"></i><span class="hidden-xs"> Fernsehen</span></a>
           </li>
           <li class="col-xs-3 text-center">
-            <a href="#"><i class="fa fa-gears"></i><span class="hidden-xs"> Alle Befehle</span></a>
+            <a href="#" id="alle-befehle" class="nav-btn">
+              <i class="fa fa-gears"></i><span class="hidden-xs"> Alle Befehle</span></a>
           </li>
         </ul>
       </div>
     </nav>
 
     <!-- An/Aus -->
-    <div id="an-aus" class="remote-screen container hidden">
+    <div id="an-aus-content" class="remote-screen container">
       <div class="buttongroup col-xs-12">
         <div class="col-xs-12 control-button-container text-center">
           <div class="col-xs-1"></div>
@@ -82,21 +86,21 @@
       <div class="buttongroup col-xs-12">
         <div class="col-xs-12 control-button-container text-center">
           <div class="col-xs-1"></div>
-          <a class="btn col-xs-10 btn-lg btn-danger btn-huge" href="/send/Yamaha_RAX23_WV50020/KEY_POWER">
-            <i class="fa fa-3x fa-power-off pull-left"></i> Yamaha
-          </a>
+          <a class="btn col-xs-7 col-md-8 btn-lg btn-danger btn-huge sharp-right" href="/send/Yamaha_RAX23_WV50020/KEY_POWER">
+            <i class="fa fa-3x fa-power-off pull-left"></i> Yamaha</a>
+          <a class="btn col-xs-3 col-md-2 btn-lg btn-warning btn-huge sharp-left" id="Yamaha_RAX23_WV50020-KEY_POWER-5x">5x</a>
         </div>
       </div>
     </div>
 
     <!-- Alle Knöpfe -->
-    <div id="alle-befehle" class="remote-screen container">
+    <div id="alle-befehle-content" class="remote-screen container">
       <!-- SAMSUNG -->
       <div class="buttongroup col-xs-12 col-md-4">
         <div class="col-xs-12 control-button-container">
           <div class="container-fluid h4"><strong>Samsung</strong> 00084Q</div>
           <div class="col-xs-12 button-group">
-            <a class="btn col-xs-6 btn-lg btn-danger" href="/send/Samsung_00084Q/KEY_POWER">
+            <a class="btn col-xs-12 btn-lg btn-danger" href="/send/Samsung_00084Q/KEY_POWER">
               <i class="fa fa-power-off pull-left"></i> An/Aus</a>
           </div>
           <br><br><br><br>
@@ -190,7 +194,7 @@
         <div class="col-xs-12 control-button-container">
           <div class="container-fluid h4"><strong>Thomson</strong> DCI1500GK</div>
           <div class="col-xs-12 button-group">
-            <a class="btn col-xs-6 btn-lg btn-danger" href="/send/Thomson_DCI1500GK/KEY_POWER">
+            <a class="btn col-xs-12 btn-lg btn-danger" href="/send/Thomson_DCI1500GK/KEY_POWER">
               <i class="fa fa-power-off pull-left"></i> An/Aus</a>
           </div>
           <br><br><br><br>
@@ -227,12 +231,11 @@
           </div>
           <br><br><br>
           <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_Menu">
-              <i class="fa fa-gear"></i></a>
+            <div class="col-xs-3"></div>
             <div class="col-xs-1"></div>
             <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_0">0</a>
             <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_TEXT">Text</a>
+            <div class="col-xs-3"></div>
           </div>
           <br><br><br><br>
           <div class="col-xs-12 button-group">
@@ -265,7 +268,7 @@
             <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_UP">
             <i class="fa fa-arrow-up"></i></a>
             <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_TEXT">Text</a>
+            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_INFO">Info</a>
           </div>
           <br><br><br>
           <div class="col-xs-12 button-group">
@@ -279,7 +282,7 @@
           </div>
           <br><br><br>
           <div class="col-xs-12 button-group">
-            <div class="col-xs-3"></div>
+            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_TEXT">Text</a>
             <div class="col-xs-1"></div>
             <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_DOWN">
               <i class="fa fa-arrow-down"></i></a>
@@ -301,27 +304,32 @@
         <div class="col-xs-12 control-button-container">
           <div class="container-fluid h4"><strong>Yamaha</strong> RAX23 WV50020</div>
           <div class="col-xs-12 button-group">
-            <a class="btn col-xs-6 btn-lg btn-danger" href="/send/Yamaha_RAX23_WV50020/KEY_POWER">
+            <a class="btn col-xs-9 btn-lg btn-danger sharp-right" href="/send/Yamaha_RAX23_WV50020/KEY_POWER">
               <i class="fa fa-power-off pull-left"></i> An/Aus</a>
+            <a class="btn col-xs-3 btn-lg btn-warning sharp-left" id="Yamaha_RAX23_WV50020-KEY_POWER-5x-mini">5x</a>
           </div>
           <br><br><br><br>
           <div class="col-xs-12 button-group">
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Yamaha_RAX23_WV50020/KEY_VOLUMEUP">
+            <a class="btn col-xs-9 btn-lg btn-primary sharp-right" href="/send/Yamaha_RAX23_WV50020/KEY_VOLUMEUP">
               <i class="fa fa-volume-up pull-left"></i> Vol.</a>
-            <div class="col-xs-2"></div>
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Yamaha_RAX23_WV50020/KEY_SLEEP">Sleep</a>
+            <a class="btn col-xs-3 btn-lg btn-info sharp-left" id="Yamaha_RAX23_WV50020-KEY_VOLUMEUP-5x">5x</a>
           </div>
           <br><br><br>
           <div class="col-xs-12 button-group">
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Yamaha_RAX23_WV50020/KEY_VOLUMEDOWN">
+            <a class="btn col-xs-9 btn-lg btn-primary sharp-right" href="/send/Yamaha_RAX23_WV50020/KEY_VOLUMEDOWN">
               <i class="fa fa-volume-down pull-left"></i> Vol.</a>
-            <div class="col-xs-2"></div>
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Yamaha_RAX23_WV50020/KEY_CD">CD</a>
+            <a class="btn col-xs-3 btn-lg btn-info sharp-left" id="Yamaha_RAX23_WV50020-KEY_VOLUMEDOWN-5x">5x</a>
           </div>
           <br><br><br>
           <div class="col-xs-12 button-group">
             <a class="btn col-xs-5 btn-lg btn-default" href="/send/Yamaha_RAX23_WV50020/KEY_MUTE">
               <i class="fa fa-volume-off pull-left"></i> Mute</a>
+            <div class="col-xs-2"></div>
+            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Yamaha_RAX23_WV50020/KEY_CD">CD</a>
+          </div>
+          <br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Yamaha_RAX23_WV50020/KEY_SLEEP">Sleep</a>
             <div class="col-xs-2"></div>
             <a class="btn col-xs-5 btn-lg btn-default" href="/send/Yamaha_RAX23_WV50020/KEY_TV">Line 1</a>
           </div>

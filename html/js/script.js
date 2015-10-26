@@ -43,7 +43,7 @@ function hoverTouchUnstick() {
     }    
   }    
 }    
-//hoverTouchUnstick();
+hoverTouchUnstick();
    
 function sendKey(remote_name, key_name) {    
     document.body.style.opacity = "0.5";

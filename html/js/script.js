@@ -46,7 +46,7 @@ function hoverTouchUnstick() {
 //hoverTouchUnstick();
    
 function sendKey(remote_name, key_name) {    
-    document.body.style.opacity = "0.5";   
+    document.body.style.opacity = "0.5";
  $.ajax({    
    url: "/send/"+remote_name+"/"+key_name,   
  }).done(function(data) {
@@ -71,25 +71,32 @@ $(".nav-btn").click(function(event) {
 /* Specific Buttons */
 $("#Yamaha_RAX23_WV50020-KEY_POWER-5x").click(function() {
   for (var i = 5; i > 0; i--) {
-    sendKey(Yamaha_RAX23_WV50020,KEY_POWER);
+    sendKey("Yamaha_RAX23_WV50020","KEY_POWER");
   };
 });
 
 $("#Yamaha_RAX23_WV50020-KEY_POWER-5x-mini").click(function() {
   for (var i = 5; i > 0; i--) {
-    sendKey(Yamaha_RAX23_WV50020,KEY_POWER);
+    sendKey("Yamaha_RAX23_WV50020","KEY_POWER");
   };
 });
 
 $("#Yamaha_RAX23_WV50020-KEY_VOLUMEUP-5x").click(function() {
   for (var i = 5; i > 0; i--) {
-    sendKey(Yamaha_RAX23_WV50020,KEY_VOLUMEUP);
+    sendKey("Yamaha_RAX23_WV50020","KEY_VOLUMEUP");
   };
 });
 
 $("#Yamaha_RAX23_WV50020-KEY_VOLUMEDOWN-5x").click(function() {
   for (var i = 5; i > 0; i--) {
-    sendKey(Yamaha_RAX23_WV50020,KEY_VOLUMEDOWN);
+    sendKey("Yamaha_RAX23_WV50020","KEY_VOLUMEDOWN");
   };
 });
 
+$("#NEXT_FAVORITE").click(function() {
+  // TODO
+});
+
+$("#LAST_FAVORITE").click(function() {
+  // TODO
+});

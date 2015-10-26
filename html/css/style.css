@@ -159,3 +159,6 @@ body {
 #Yamaha_RAX23_WV50020-KEY_POWER-5x {
     line-height: 56px;
 }
+.initial-hide {
+    display: none;
+}

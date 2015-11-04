@@ -1,3 +1,4 @@
 #Name,Number,Picture URL (optional; optimal: 50x50px)
 ARD,101,http://www.o-ton.ch/wp-content/uploads/2010/04/ard_logo1.png
-ZDF,102
+ZDF,105
+RTL,103

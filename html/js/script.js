@@ -160,7 +160,6 @@ $("#LAST_FAVORITE").click(function() {
 
 /* Change active favorite button and send digits */
 function changeFavorite(listNumber) {
-  console.log(active);
   // Continuously run through favs
   if (listNumber < 0) listNumber = lines.length - 1;
   if (listNumber == lines.length) listNumber = 0;
@@ -168,7 +167,6 @@ function changeFavorite(listNumber) {
   // Change buttons and active
   $("#fav"+active).removeClass("btn-primary").addClass("btn-default");
   active = listNumber;
-  console.log(active);
   $("#fav"+active).removeClass("btn-default").addClass("btn-primary");
   
   // Send each digit of active

@@ -10,7 +10,7 @@
 
 var express = require('express');
 var app = express();
-var sys = require('sys');
+var sys = require('util');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var exec = require('child_process').exec;

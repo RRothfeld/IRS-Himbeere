@@ -80,7 +80,7 @@ app.get('/send/:device/:key', function(req, res) {
   }
 
   // send command to irsend
-  var command = "irsend SEND_ONCE "+deviceName+" "+key;
+  var command = "/usr/bin/irsend SEND_ONCE "+deviceName+" "+key;
   exec(command, function(error, stdout, stderr){
     if(error)
       return console.log(error);

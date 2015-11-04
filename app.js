@@ -46,33 +46,6 @@ var getCommandsForDevice = function(deviceName) {
     }
   }
 };
-/**
- * Get Device from irsend command
- * @param  {String} error  Error from running command
- * @param  {String} stdout std out
- * @param  {String} stderr std err
- * @return {None}        
- */
-var getDevice = function (error, stdout, stderr) {
-  if(error) {
-    console.log("irsend not available.");
-    return;
-  }
-  var lines = stderr.split("\n");
-  for(var lineIndex in lines) {
-    var line = lines[lineIndex];
-    var parts = line.split(" ");
-    if(parts.length>1) {
-      var deviceName = parts[1];
-      console.log("device found: "+deviceName.trim());
-      devices[deviceName] = [];
-      exec("irsend list \""+deviceName+"\" \"\"", getCommandsForDevice(deviceName));
-
-    }
-  }          
-};
-// Get all device information
-exec("irsend list \"\" \"\"", getDevice);
 
 // Define static HTML files
 app.use(express.static(__dirname + '/html'));
@@ -83,9 +56,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Define GET request for /send/deviceName/buttonName
 app.get('/send/:device/:key', function(req, res) {
-
-  var deviceName = req.param("device");
-  var key = req.param("key").toUpperCase();
+  var deviceName = req.params.device;
+  var key = req.params.key.toUpperCase();
 
   // Make sure that the user has requested a valid device 
   if(!devices.hasOwnProperty(deviceName)) {
@@ -119,11 +91,11 @@ app.get('/send/:device/:key', function(req, res) {
 
 // Define POST request for /save
 app.post('/save', function (req, res) {
-  fs.writeFile("html/favs.csv", req.body.text, function(err) {
+  fs.writeFile("html/favs.txt", req.body.text, function(err) {
     if(err) {
         return console.log(err);
     } else {
-      res.send("Successfully saved changes."+req);
+      res.send("Successfully saved changes.");
     }
   });
 });

@@ -2,7 +2,7 @@
 var thomson = "Thomson_DCI1500GK";
 var yamaha = "Yamaha_RAX23_WV50020";
 var active = 0; // Active favorite
-var favCSV; // External favorites list
+var favTXT; // External favorites list
 var lines = []; // Internal favorites list
 
 /* General Scripts */
@@ -68,11 +68,11 @@ $("#"+yamaha+"-KEY_VOLUMEDOWN-5x").click(function() {
 $(document).ready(function() {
   $.ajax({
     type: "GET",
-    url: "favs.csv",
+    url: "favs.txt",
     dataType: "text",
     success: function(data) {
-      favCSV = data;
-      processData(favCSV);
+      favTXT = data;
+      processData(favTXT);
     }
   });
 });
@@ -120,7 +120,7 @@ function processData(allText) {
   };
 
   // Populate placeholder text for editing favorites
-  $("#fav-list-edit").append(favCSV);
+  $("#fav-list-edit").append(favTXT);
 
   // Activate favorite buttons
   $(".btn-fav").click(function() {
@@ -136,7 +136,7 @@ $("#save-button").click(function(){
   $.ajax({
     type: "post",
     url: "/save",
-    data: {"text":$("#fav-list-edit").text()},
+    data: {"text":$("textarea#fav-list-edit").val()},
     success: function(){
       // Reload and show favorites
       location.reload(true);

@@ -107,7 +107,7 @@ function processData(allText) {
     if (lines[i].length == 3) {
       buttonHTML = buttonHTML.concat("<img src=\""
       +lines[i][2] // URL to Picture
-      +"\" class=\"fav-pic\" alt=\"Update URL\">");
+      +"\" class=\"fav-pic hidden-xs\" alt=\"Update URL\">");
     };
     buttonHTML = buttonHTML.concat(lines[i][0] // Channel Name
       +"</a>");

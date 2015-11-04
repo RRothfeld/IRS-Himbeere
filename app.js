@@ -1,7 +1,7 @@
 /**
  * app.js
  * 
- * IR Remote Web Service
+ * IRS-Himbeere Application
  * 
  * based on:
  * @author Michael Vartan

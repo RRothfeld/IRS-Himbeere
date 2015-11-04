@@ -3,9 +3,11 @@
   "version": "1.2.0",
   "description": "IR-Fernbediedung",
   "main": "app.js",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.10.2",
-    "forever": "~0.15.1"
+    "forever": "~0.15.1",
+    "body-parser": "~1.14.1"
   },
   "repository": {
     "type": "git",

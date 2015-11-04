@@ -42,7 +42,8 @@ For a local installation, follow these steps:
  2. Clone this repository: `git clone https://github.com/RRothfeld/IRS-Himbeere.git` 
  3. Change into the created folder: `cd IRS-Himbeere`
  4. Install node modules: `npm install`
- 5. change permission of favs.csv: cd html/ und dann chmod 666 favs.csv
+ 5. sudo chmod -R 666 IRS-Himbeere/
+
  5. There are two options to start the web server. The quick, yet temporary, option: `node app.js`. Or the permanent option, which will automatically start the webserver with the Raspberry Pi booting:
 
 sudo nano /etc/rc.local 

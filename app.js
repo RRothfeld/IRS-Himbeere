@@ -83,7 +83,7 @@ app.get('/send/:device/:key', function(req, res) {
   var command = "irsend SEND_ONCE "+deviceName+" "+key;
   exec(command, function(error, stdout, stderr){
     if(error)
-      res.send("Error sending command");
+      return console.log(error);
     else   
       res.send("Successfully sent command");
   });
@@ -93,7 +93,7 @@ app.get('/send/:device/:key', function(req, res) {
 app.post('/save', function (req, res) {
   fs.writeFile("html/favs.txt", req.body.text, function(err) {
     if(err) {
-        return console.log(err);
+      return console.log(err);
     } else {
       res.send("Successfully saved changes.");
     }

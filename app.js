@@ -80,7 +80,7 @@ app.get('/send/:device/:key', function(req, res) {
   }
 
   // send command to irsend
-  var command = "/usr/bin/irsend SEND_ONCE "+deviceName+" "+key;
+  var command = "irsend SEND_ONCE "+deviceName+" "+key;
   exec(command, function(error, stdout, stderr){
     if(error)
       return console.log(error);
@@ -91,7 +91,7 @@ app.get('/send/:device/:key', function(req, res) {
 
 // Define POST request for /save
 app.post('/save', function (req, res) {
-  fs.writeFile("html/favs.txt", req.body.text, function(err) {
+  fs.writeFile(__dirname+"/html/favs.txt", req.body.text, function(err) {
     if(err) {
       return console.log(err);
     } else {

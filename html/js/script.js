@@ -1,57 +1,31 @@
-/* General Scripts */
-$(".remote-screen a").click(function(event) {    
- var $this = $(this);
- document.body.style.opacity = "0.5";
+/* Global variables */
+var thomson = "Thomson_DCI1500GK";
+var yamaha = "Yamaha_RAX23_WV50020";
+var active = 0; // Active favorite
+var favCSV; // External favorites list
+var lines = []; // Internal favorites list
 
- $.ajax({
-   url: $(this).attr("href"),    
- }).done(function(data) {    
-   document.body.style.opacity="1";
- });   
- event.preventDefault();
- return true;
+/* General Scripts */
+$(".remote-screen a").click(function(event) {
+  //var $this = $(this);
+  document.body.style.opacity = "0.5";
+
+  $.ajax({
+    url: $(this).attr("href"),
+  }).done(function(data) {
+    document.body.style.opacity="1";
+  });   
+  event.preventDefault();
+  return true;
 });
    
-/**    
- * Converts :hover CSS to :active CSS on mobile devices.   
- * Otherwise, when tapping a button on a mobile device, the button stays in    
- * the :hover state until the button is pressed.     
- *   
- * Inspired by: https://gist.github.com/rcmachado/7303143    
- * @author  Michael Vartan <michael@mvartan.com>   
- * @version 1.0    
- * @date    2014-12-20   
- */    
-function hoverTouchUnstick() {   
-  // Check if the device supports touch events   
-  if('ontouchstart' in document.documentElement) {   
-    // Loop through each stylesheet    
-    for(var sheetIndex = document.styleSheets.length - 1; sheetIndex >= 0; sheetIndex--) {   
-      var sheet = document.styleSheets[sheetIndex];    
-      // Verify if cssRules exists in sheet    
-      if(sheet.cssRules) {   
-        // Loop through each rule in sheet   
-        for(var ruleIndex = sheet.cssRules.length - 1; ruleIndex >= 0; ruleIndex--) {    
-          var rule = sheet.cssRules[ruleIndex];    
-          // Verify rule has selector text   
-          if(rule.selectorText) {    
-            // Replace hover psuedo-class with active psuedo-class   
-            rule.selectorText = rule.selectorText.replace(":hover", ":active");    
-          }    
-        }    
-      }    
-    }    
-  }    
-}    
-hoverTouchUnstick();
-   
-function sendKey(remote_name, key_name) {    
-    document.body.style.opacity = "0.5";
- $.ajax({    
-   url: "/send/"+remote_name+"/"+key_name,   
- }).done(function(data) {
-   document.body.style.opacity="1"   
- });     
+function sendKey(remote_name, key_name) {
+  document.body.style.opacity = "0.5";
+  $.ajax({
+    url: "/send/"+remote_name+"/"+key_name,   
+  }).done(function(data) {
+    document.body.style.opacity="1";
+  }); 
 }
 
 /* Top Navigation */
@@ -60,43 +34,168 @@ $(".nav-btn").click(function(event) {
   $(".remote-screen").hide();
 
   var code = $(this).attr('id');
-  if(code == "an-aus") $("#an-aus-content").show();
-  if(code == "favoriten") $("#favoriten-content").show();
-  if(code == "fernsehen") $("#fernsehen-content").show();
-  if(code == "alle-befehle") $("#alle-befehle-content").show();
+  $("#"+code+"-content").show();
 
   document.body.style.opacity = "1";
 });
 
-/* Specific Buttons */
-$("#Yamaha_RAX23_WV50020-KEY_POWER-5x").click(function() {
+/* Yamaha Multi-Buttons */
+$("#"+yamaha+"-KEY_POWER-5x").click(function() {
   for (var i = 5; i > 0; i--) {
-    sendKey("Yamaha_RAX23_WV50020","KEY_POWER");
+    sendKey(yamaha,"KEY_POWER");
   };
 });
 
-$("#Yamaha_RAX23_WV50020-KEY_POWER-5x-mini").click(function() {
+$("#"+yamaha+"-KEY_POWER-5x-mini").click(function() {
   for (var i = 5; i > 0; i--) {
-    sendKey("Yamaha_RAX23_WV50020","KEY_POWER");
+    sendKey(yamaha,"KEY_POWER");
   };
 });
 
-$("#Yamaha_RAX23_WV50020-KEY_VOLUMEUP-5x").click(function() {
+$("#"+yamaha+"-KEY_VOLUMEUP-5x").click(function() {
   for (var i = 5; i > 0; i--) {
-    sendKey("Yamaha_RAX23_WV50020","KEY_VOLUMEUP");
+    sendKey(yamaha,"KEY_VOLUMEUP");
   };
 });
 
-$("#Yamaha_RAX23_WV50020-KEY_VOLUMEDOWN-5x").click(function() {
+$("#"+yamaha+"-KEY_VOLUMEDOWN-5x").click(function() {
   for (var i = 5; i > 0; i--) {
-    sendKey("Yamaha_RAX23_WV50020","KEY_VOLUMEDOWN");
+    sendKey(yamaha,"KEY_VOLUMEDOWN");
   };
 });
 
+/* Favorites List & Buttons */
+$(document).ready(function() {
+  $.ajax({
+    type: "GET",
+    url: "favs.csv",
+    dataType: "text",
+    success: function(data) {
+      favCSV = data;
+      processData(favCSV);
+    }
+  });
+});
+
+function processData(allText) {
+  // Setup variables
+  var allTextLines = allText.split(/\r\n|\n/);
+
+  // Read fav file content (skip first line with headers)
+  for (var i=0; i<allTextLines.length; i++) {
+    if (allTextLines[i]!="" && allTextLines[i][0]!="#") { // Ignore comments and emtpy
+      var data = allTextLines[i].split(',');
+      lines.push(data);
+    }
+  }
+
+  // Check Bootstrap state
+  var size = findBootstrapEnvironment();
+
+  // Populate favriable-list container
+  for (var i=0; i<lines.length; i++) {
+    // Highlight first button
+    var btnType = "btn-primary";
+    if (i!=0) btnType = "btn-default";
+
+    // Create HTML code for fav button
+    var buttonHTML = "<a class=\"btn col-xs-5 col-md-3 "
+      +"btn-lg btn-huge btn-fav "+btnType
+      +"\" id=\"fav"+i
+      +"\" href=\"#\">";
+    // Add image if URL existent
+    if (lines[i].length == 3) {
+      buttonHTML = buttonHTML.concat("<img src=\""
+      +lines[i][2] // URL to Picture
+      +"\" class=\"fav-pic\" alt=\"Update URL\">");
+    };
+    buttonHTML = buttonHTML.concat(lines[i][0] // Channel Name
+      +"</a>");
+
+    // Append a button for favorite
+    $("#favorites-list").append(buttonHTML);
+
+    // Append spacer on every second button if Bootstrap is xsmall    
+    if(!(size=="xs" && i%2!=0)) $("#favorites-list").append("<div class=\"col-xs-1\"></div>");
+  };
+
+  // Populate placeholder text for editing favorites
+  $("#fav-list-edit").append(favCSV);
+
+  // Activate favorite buttons
+  $(".btn-fav").click(function() {
+    var id = $(this).attr('id');
+    var str = id.substr(id.length-1); // List Number
+
+    changeFavorite(str);
+  });
+}
+
+// React to favorite saved changes
+$("#save-button").click(function(){
+  $.ajax({
+    type: "post",
+    url: "/save",
+    data: {"text":$("#fav-list-edit").text()},
+    success: function(){
+      // Reload and show favorites
+      location.reload(true);
+      $(".remote-screen").hide();
+      $("#favorites-content").show();
+    },
+    error: function(){
+      alert("ERROR: Could not save changes.");
+    }
+  });
+});
+
+// Favorites buttons logic and next function
 $("#NEXT_FAVORITE").click(function() {
-  // TODO
+  changeFavorite(active+1);
 });
 
 $("#LAST_FAVORITE").click(function() {
-  // TODO
+  changeFavorite(active-1);
 });
+
+/* Change active favorite button and send digits */
+function changeFavorite(listNumber) {
+  console.log(active);
+  // Continuously run through favs
+  if (listNumber < 0) listNumber = lines.length - 1;
+  if (listNumber == lines.length) listNumber = 0;
+
+  // Change buttons and active
+  $("#fav"+active).removeClass("btn-primary").addClass("btn-default");
+  active = listNumber;
+  console.log(active);
+  $("#fav"+active).removeClass("btn-default").addClass("btn-primary");
+  
+  // Send each digit of active
+  var channelNumber = String(lines[active][1]);
+  for (var j=0; j<channelNumber.length; j++) {
+    sendKey(thomson,"KEY_"+channelNumber[j]);
+  };
+  sendKey(thomson,"KEY_OK"); // Send OK (speeds up channel selection)
+}
+
+/* Help function to detect bootstrap change */
+function findBootstrapEnvironment() {
+  var envs = ["xs", "sm", "md", "lg"],    
+      doc = window.document,
+      temp = doc.createElement("div");
+
+  doc.body.appendChild(temp);
+
+  for (var i = envs.length - 1; i >= 0; i--) {
+      var env = envs[i];
+
+      temp.className = "hidden-" + env;
+
+      if (temp.offsetParent === null) {
+          doc.body.removeChild(temp);
+          return env;
+      }
+  }
+  return "";
+}

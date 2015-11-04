@@ -9,6 +9,7 @@
 
     <title>IRS Himbeere</title>
 
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-touch-icon-72x72.png">
@@ -43,26 +44,20 @@
 
   <body>
     <nav class="navbar navbar-static-top">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav col-xs-12">
-          <li class="col-xs-3 text-center">
-            <a href="#" id="an-aus" class="nav-btn">
-              <i class="fa fa-power-off"></i><span class="hidden-xs"> An/Aus</span></a>
-          </li>
-          <li class="col-xs-3 text-center">
-            <a href="#" id="favoriten" class="nav-btn">
-              <i class="fa fa-star"></i><span class="hidden-xs"> Favoriten</span></a>
-          </li>
-          <li class="col-xs-3 text-center">
-            <a href="#" id="fernsehen" class="nav-btn">
-              <i class="fa fa-desktop"></i><span class="hidden-xs"> Fernsehen</span></a>
-          </li>
-          <li class="col-xs-3 text-center">
-            <a href="#" id="alle-befehle" class="nav-btn">
-              <i class="fa fa-gears"></i><span class="hidden-xs"> Alle Befehle</span></a>
-          </li>
-        </ul>
-      </div>
+      <ul class="nav navbar-nav col-xs-12">
+        <li class="col-xs-4 text-center">
+          <a href="#" id="an-aus" class="nav-btn">
+            <i class="fa fa-power-off"></i><span class="hidden-xs nav-title">An/Aus</span></a>
+        </li>
+        <li class="col-xs-4 text-center">
+          <a href="#" id="favoriten" class="nav-btn">
+            <i class="fa fa-star"></i><span class="hidden-xs nav-title">Favoriten</span></a>
+        </li>
+        <li class="col-xs-4 text-center">
+          <a href="#" id="fernbedienung" class="nav-btn">
+            <i class="fa fa-desktop"></i><span class="hidden-xs nav-title">Fernbedienung</span></a>
+        </li>
+      </ul>
     </nav>
 
     <!-- On/Off -->
@@ -95,205 +90,58 @@
 
     <!-- Favoriten -->
     <div id="favoriten-content" class="remote-screen container initial-hide">
-      <h1>TODO</h1>
-    </div>
-
-    <!-- Fernsehen -->
-    <div id="fernsehen-content" class="remote-screen container initial-hide">
-      <div class="buttongroup col-xs-12 col-md-4">
+      <div class="buttongroup col-xs-12">
         <div class="col-xs-12 control-button-container">
           <div class="col-xs-12 button-group">
-            <a class="btn col-xs-5 btn-lg btn-default disabled" href="" id="LAST_FAVORITE">
-              <i class="fa fa-arrow-left pull-left"></i> Last Fav.</a>
+            <a class="btn col-xs-5 btn-lg btn-default" href="" id="LAST_FAVORITE">
+              <i class="fa fa-arrow-left pull-left"></i> Last</a>
             <div class="col-xs-1"></div>
-            <a class="btn col-xs-5 btn-lg btn-default disabled" href="" id="NEXT_FAVORITE">
-              Next Fav. <i class="fa fa-arrow-right pull-right"></i></a>
+            <a class="btn col-xs-5 btn-lg btn-default" href="" id="NEXT_FAVORITE">
+              Next <i class="fa fa-arrow-right pull-right"></i></a>
           </div>
-          <br><br><br><br>
+        </div>
+      </div>
+
+      <div class="buttongroup col-xs-12">
+        <div class="col-xs-12 control-button-container">
           <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_1">1</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_2">2</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_3">3</a>
+            <div id="favorites-list"></div>
           </div>
-          <br><br><br>
+        </div>
+      </div>
+
+      <div class="buttongroup col-xs-12">
+        <div class="col-xs-12 control-button-container">
           <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_4">4</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_5">5</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_6">6</a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_7">7</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_8">8</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_9">9</a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <div class="col-xs-3"></div>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_0">0</a>
-            <div class="col-xs-1"></div>
-            <div class="col-xs-3"></div>
-          </div>
-          <br><br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_VOLUMEUP">
-              <i class="fa fa-volume-up pull-left"></i> Vol. up</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_CHANNELUP">
-              Ch. up <i class="fa fa-arrow-circle-up pull-right"></i></a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_VOLUMEDOWN">
-              <i class="fa fa-volume-down pull-left"></i> Vol. down</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_CHANNELDOWN">
-              Ch. down <i class="fa fa-arrow-circle-down pull-right"></i></a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_MUTE">
-              <i class="fa fa-volume-off pull-left"></i> Mute</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_BACK">Back</a>
-          </div>
-          <br><br><br><br>
-          <div class="col-xs-12 button-group">
-            <div class="col-xs-3"></div>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_UP">
-            <i class="fa fa-arrow-up"></i></a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_INFO">Info</a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_LEFT">
-            <i class="fa fa-arrow-left"></i></a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_ENTER">OK</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_RIGHT">
-            <i class="fa fa-arrow-right"></i></a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <div class="col-xs-3"></div>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Thomson_DCI1500GK/KEY_DOWN">
-              <i class="fa fa-arrow-down"></i></a>
-            <div class="col-xs-1"></div>
-            <div class="col-xs-3"></div>
+            <a class="btn btn-lg btn-default nav-btn" href="#" id="edit-fav">
+              <i class="fa fa-gear pull-left"></i> Edit</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Alle Befehle -->
-    <div id="alle-befehle-content" class="remote-screen container initial-hide">
-      <!-- SAMSUNG -->
-      <div class="buttongroup col-xs-12 col-md-4">
+    <!-- Edit Favorites -->
+    <div id="edit-fav-content" class="remote-screen container initial-hide">
+      <div class="buttongroup col-xs-12">
         <div class="col-xs-12 control-button-container">
-          <div class="container-fluid h4"><strong>Samsung</strong> 00084Q</div>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-11 btn-lg btn-danger" href="/send/Samsung_00084Q/KEY_POWER">
-              <i class="fa fa-power-off pull-left"></i> On/Off</a>
+          <div class="container-fluid h4">
+            <strong>Favorites</strong>
           </div>
-          <br><br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_1">1</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_2">2</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_3">3</a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_4">4</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_5">5</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_6">6</a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_7">7</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_8">8</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_9">9</a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_102ND">-/--</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_0">0</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_CYCLEWINDOWS">Src</a>
-          </div>
-          <br><br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_VOLUMEUP">
-              <i class="fa fa-volume-up pull-left"></i> Vol. up</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_CHANNELUP">
-              Ch. up <i class="fa fa-arrow-circle-up pull-right"></i></a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_VOLUMEDOWN">
-              <i class="fa fa-volume-down pull-left"></i> Vol. down</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_CHANNELDOWN">
-              Ch. down <i class="fa fa-arrow-circle-down pull-right"></i></a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_MUTE">
-              <i class="fa fa-volume-off pull-left"></i> Mute</a>
-            <div class="col-xs-7"></div>
-          </div>
-          <br><br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_Menu">
-              <i class="fa fa-gear"></i></a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_UP">
-              <i class="fa fa-arrow-up"></i></a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_INFO">Info</a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_LEFT">
-              <i class="fa fa-arrow-left"></i></a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_ENTER">OK</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_RIGHT">
-              <i class="fa fa-arrow-right"></i></a>
-          </div>
-          <br><br><br>
-          <div class="col-xs-12 button-group">
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_TEXT">Text</a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_DOWN">
-              <i class="fa fa-arrow-down"></i></a>
-            <div class="col-xs-1"></div>
-            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_EXIT">Exit</a>
-          </div>
+          <form role="form">
+            <div class="col-xs-12 button-group form-group">
+              <textarea class="form-control vresize" rows="12" id="fav-list-edit"></textarea>
+            </div>
+            <div class="col-xs-12 button-group form-group">
+              <button type="submit" id="save-button" class="btn btn-success">Save changes</button>
+            </div>
+          </form>
         </div>
       </div>
+    </div>
 
-    <!-- THOMSON -->
-    <div class="buttongroup col-xs-12 col-md-4">
+    <!-- Fernbedienung -->
+    <div id="fernbedienung-content" class="remote-screen container initial-hide">
+      <div class="buttongroup col-xs-12 col-md-4">
         <div class="col-xs-12 control-button-container">
           <div class="container-fluid h4"><strong>Thomson</strong> DCI1500GK</div>
           <div class="col-xs-12 button-group">
@@ -343,18 +191,18 @@
           <br><br><br><br>
           <div class="col-xs-12 button-group">
             <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_VOLUMEUP">
-              <i class="fa fa-volume-up pull-left"></i> Vol. up</a>
+              <i class="fa fa-volume-up pull-left"></i> Up</a>
             <div class="col-xs-1"></div>
             <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_CHANNELUP">
-              Ch. up <i class="fa fa-arrow-circle-up pull-right"></i></a>
+              Next <i class="fa fa-arrow-circle-up pull-right"></i></a>
           </div>
           <br><br><br>
           <div class="col-xs-12 button-group">
             <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_VOLUMEDOWN">
-              <i class="fa fa-volume-down pull-left"></i> Vol. down</a>
+              <i class="fa fa-volume-down pull-left"></i> Down</a>
             <div class="col-xs-1"></div>
             <a class="btn col-xs-5 btn-lg btn-default" href="/send/Thomson_DCI1500GK/KEY_CHANNELDOWN">
-              Ch. down <i class="fa fa-arrow-circle-down pull-right"></i></a>
+              Last <i class="fa fa-arrow-circle-down pull-right"></i></a>
           </div>
           <br><br><br>
           <div class="col-xs-12 button-group">
@@ -405,8 +253,100 @@
         </div>
       </div>
 
-    <!-- YAMAHA -->
-    <div class="buttongroup col-xs-12 col-md-4">
+      <div class="buttongroup col-xs-12 col-md-4">
+        <div class="col-xs-12 control-button-container">
+          <div class="container-fluid h4"><strong>Samsung</strong> 00084Q</div>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-11 btn-lg btn-danger" href="/send/Samsung_00084Q/KEY_POWER">
+              <i class="fa fa-power-off pull-left"></i> On/Off</a>
+          </div>
+          <br><br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_1">1</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_2">2</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_3">3</a>
+          </div>
+          <br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_4">4</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_5">5</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_6">6</a>
+          </div>
+          <br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_7">7</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_8">8</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_9">9</a>
+          </div>
+          <br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_102ND">-/--</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_0">0</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_CYCLEWINDOWS">Src</a>
+          </div>
+          <br><br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_VOLUMEUP">
+              <i class="fa fa-volume-up pull-left"></i> Up</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_CHANNELUP">
+              Next <i class="fa fa-arrow-circle-up pull-right"></i></a>
+          </div>
+          <br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_VOLUMEDOWN">
+              <i class="fa fa-volume-down pull-left"></i> Down</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_CHANNELDOWN">
+              Last <i class="fa fa-arrow-circle-down pull-right"></i></a>
+          </div>
+          <br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-5 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_MUTE">
+              <i class="fa fa-volume-off pull-left"></i> Mute</a>
+            <div class="col-xs-7"></div>
+          </div>
+          <br><br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_Menu">
+              <i class="fa fa-gear"></i></a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_UP">
+              <i class="fa fa-arrow-up"></i></a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_INFO">Info</a>
+          </div>
+          <br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_LEFT">
+              <i class="fa fa-arrow-left"></i></a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_ENTER">OK</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_RIGHT">
+              <i class="fa fa-arrow-right"></i></a>
+          </div>
+          <br><br><br>
+          <div class="col-xs-12 button-group">
+            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_TEXT">Text</a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-primary" href="/send/Samsung_00084Q/KEY_DOWN">
+              <i class="fa fa-arrow-down"></i></a>
+            <div class="col-xs-1"></div>
+            <a class="btn col-xs-3 btn-lg btn-default" href="/send/Samsung_00084Q/KEY_EXIT">Exit</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttongroup col-xs-12 col-md-4">
         <div class="col-xs-12 control-button-container">
           <div class="container-fluid h4"><strong>Yamaha</strong> RAX23 WV50020</div>
           <div class="col-xs-12 button-group">
@@ -417,13 +357,13 @@
           <br><br><br><br>
           <div class="col-xs-12 button-group">
             <a class="btn col-xs-8 btn-lg btn-primary sharp-right" href="/send/Yamaha_RAX23_WV50020/KEY_VOLUMEUP">
-              <i class="fa fa-volume-up pull-left"></i> Vol. up</a>
+              <i class="fa fa-volume-up pull-left"></i> Up</a>
             <a class="btn col-xs-3 btn-lg btn-info sharp-left" id="Yamaha_RAX23_WV50020-KEY_VOLUMEUP-5x">5x</a>
           </div>
           <br><br><br>
           <div class="col-xs-12 button-group">
             <a class="btn col-xs-8 btn-lg btn-primary sharp-right" href="/send/Yamaha_RAX23_WV50020/KEY_VOLUMEDOWN">
-              <i class="fa fa-volume-down pull-left"></i> Vol. down</a>
+              <i class="fa fa-volume-down pull-left"></i> Down</a>
             <a class="btn col-xs-3 btn-lg btn-info sharp-left" id="Yamaha_RAX23_WV50020-KEY_VOLUMEDOWN-5x">5x</a>
           </div>
           <br><br><br>
@@ -443,6 +383,7 @@
       </div>
     </div>
 
+    <!-- Scripts -->
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/bootstrap.min.js"></script>

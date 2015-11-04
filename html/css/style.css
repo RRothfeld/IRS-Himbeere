@@ -162,3 +162,14 @@ body {
 .initial-hide {
     display: none;
 }
+.nav-title {
+    padding-left: 10px;
+}
+.btn-fav {
+    margin-bottom: 15px;
+}
+.fav-pic {
+    margin-right: 15px;
+    height: 50px;
+    width: 50px;
+}

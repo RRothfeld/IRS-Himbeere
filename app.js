@@ -11,7 +11,8 @@
 var express = require('express');
 var app = express();
 var sys = require('sys');
-var logger = require('morgan');
+var fs = require('fs');
+var bodyParser = require('body-parser');
 var exec = require('child_process').exec;
 
 /**
@@ -76,8 +77,9 @@ exec("irsend list \"\" \"\"", getDevice);
 // Define static HTML files
 app.use(express.static(__dirname + '/html'));
 
-// Define logger
-app.use(logger('common'));
+// Enable JSON-encoded bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Define GET request for /send/deviceName/buttonName
 app.get('/send/:device/:key', function(req, res) {
@@ -113,9 +115,18 @@ app.get('/send/:device/:key', function(req, res) {
     else   
       res.send("Successfully sent command");
   });
+});
 
-
-}); // end define GET request for /send/deviceName/buttonName
+// Define POST request for /save
+app.post('/save', function (req, res) {
+  fs.writeFile("html/favs.csv", req.body.text, function(err) {
+    if(err) {
+        return console.log(err);
+    } else {
+      res.send("Successfully saved changes."+req);
+    }
+  });
+});
 
 // Listen on port 3000
 app.listen('3000');

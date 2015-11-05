@@ -174,10 +174,12 @@ function changeFavorite(listNumber) {
   
   // Send each digit of active
   var channelNumber = String(lines[active][1]);
-  for (var j=0; j<channelNumber.length; j++) {
-    sendKey(thomson,"KEY_"+channelNumber[j]);
+  i = 0;
+  function sendDigit() {
+    sendKey(thomson,"KEY_"+channelNumber[i]);
+    setTimeout(function() { i++; if (i < channelNumber.length) {sendDigit();} else {i=0} }, 50); // 50ms
   };
-  sendKey(thomson,"KEY_OK"); // Send OK (speeds up channel selection)
+  sendDigit();
 }
 
 /* Help function to detect bootstrap change */

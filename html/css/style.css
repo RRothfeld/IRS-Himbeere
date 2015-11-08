@@ -178,9 +178,10 @@ body {
 .remote-screen {
     padding-top: 75px;
 }
-.h4 {
+.h4-spacer {
     margin-top: 15px;
     margin-bottom: 0px;
+    padding-left: 16px;
 }
 .sm-spacer {
     min-height: 1px;
@@ -191,4 +192,7 @@ body {
     min-height: 1px;
     padding-top: 20px;
 
+}
+.h4-fav {
+    margin: 0px 0px 10px 16px;
 }

@@ -1,9 +1,19 @@
 /* Global variables */
 var thomson = "Thomson_DCI1500GK";
 var yamaha = "Yamaha_RAX23_WV50020";
-var active = 0; // Active favorite
-var favTXT; // External favorites list
-var lines = []; // Internal favorites list
+
+// TV varibales
+var activeTV = 0; // Active favorite
+var favTV; // External favorites list
+var linesTV = []; // Internal favorites list
+
+// Radio varibales
+var activeRadio = 0; // Active favorite
+var favRadio; // External favorites list
+var linesRadio = []; // Internal favorites list
+
+// Check Bootstrap state
+var size = findBootstrapEnvironment();
 
 /* General Scripts */
 $(".remote-screen a").click(function(event) {
@@ -40,26 +50,14 @@ $(".nav-btn").click(function(event) {
 });
 
 /* Yamaha Multi-Buttons */
-$("#"+yamaha+"-KEY_POWER-5x").click(function() {
-  for (var i = 5; i > 0; i--) {
-    sendKey(yamaha,"KEY_POWER");
-  };
-});
-
-$("#"+yamaha+"-KEY_POWER-5x-mini").click(function() {
-  for (var i = 5; i > 0; i--) {
-    sendKey(yamaha,"KEY_POWER");
-  };
-});
-
-$("#"+yamaha+"-KEY_VOLUMEUP-5x").click(function() {
-  for (var i = 5; i > 0; i--) {
+$("#"+yamaha+"-KEY_VOLUMEUP-8x").click(function() {
+  for (var i = 8; i > 0; i--) {
     sendKey(yamaha,"KEY_VOLUMEUP");
   };
 });
 
-$("#"+yamaha+"-KEY_VOLUMEDOWN-5x").click(function() {
-  for (var i = 5; i > 0; i--) {
+$("#"+yamaha+"-KEY_VOLUMEDOWN-8x").click(function() {
+  for (var i = 8; i > 0; i--) {
     sendKey(yamaha,"KEY_VOLUMEDOWN");
   };
 });
@@ -71,15 +69,28 @@ $(document).ready(function() {
     url: "favs.txt",
     dataType: "text",
     success: function(data) {
-      favTXT = data;
-      processData(favTXT);
+      favTV = data;
+      processData(favTV,true);
     }
   });
 });
 
-function processData(allText) {
+$(document).ready(function() {
+  $.ajax({
+    type: "GET",
+    url: "favs-radio.txt",
+    dataType: "text",
+    success: function(data) {
+      favRadio = data;
+      processData(favRadio,false);
+    }
+  });
+});
+
+function processData(data,tv) {
   // Setup variables
-  var allTextLines = allText.split(/\r\n|\n/);
+  var allTextLines = data.split(/\r\n|\n/);
+  var lines = [];
 
   // Read fav file content (skip first line with headers)
   for (var i=0; i<allTextLines.length; i++) {
@@ -89,19 +100,27 @@ function processData(allText) {
     }
   }
 
-  // Check Bootstrap state
-  var size = findBootstrapEnvironment();
+  if(tv)
+    linesTV = lines;
+  else
+    linesRadio = lines;
 
   // Populate favriable-list container
   for (var i=0; i<lines.length; i++) {
-    // Highlight first button
-    var btnType = "btn-primary";
-    if (i!=0) btnType = "btn-default";
+    // Highlight first TV button
+    var btnType = "btn-default";
+    if (i==0 && tv) btnType = "btn-primary";
 
     // Create HTML code for fav button
+    var code;
+    if (tv)
+      code = "TV";
+    else
+      code = "RA";
+
     var buttonHTML = "<a class=\"btn col-xs-5 col-md-3 "
       +"btn-lg btn-huge btn-fav "+btnType
-      +"\" id=\"fav"+i
+      +"\" id=\""+code+i
       +"\" href=\"#\">";
     // Add image if URL existent
     if (lines[i].length == 3) {
@@ -113,21 +132,31 @@ function processData(allText) {
       +"</a>");
 
     // Append a button for favorite
-    $("#favorites-list").append(buttonHTML);
+    var appendTo;
+    if (tv) 
+      appendTo = "#favorites-list";
+    else
+      appendTo = "#favorites-list-radio";
+    $(appendTo).append(buttonHTML);
 
     // Append spacer on every second button if Bootstrap is xsmall    
-    if(!(size=="xs" && i%2!=0)) $("#favorites-list").append("<div class=\"col-xs-1\"></div>");
+    if(!(size=="xs" && i%2!=0))
+      $(appendTo).append("<div class=\"col-xs-1\"></div>");
   };
 
   // Populate placeholder text for editing favorites
-  $("#fav-list-edit").append(favTXT);
+  if (tv)
+    $("#fav-list-edit").append(favTV);
+  else
+    $("#fav-list-radio-edit").append(favRadio);
 
   // Activate favorite buttons
   $(".btn-fav").click(function() {
     var id = $(this).attr('id');
-    var str = id.substr(id.length-1); // List Number
-
-    changeFavorite(str);
+    var tv = true;
+    if (id.substr(0,2) != "TV")
+      tv = false;
+    changeFavorite(id.substr(2),tv);
   });
 }
 
@@ -136,12 +165,13 @@ $("#save-button").click(function(){
   $.ajax({
     type: "post",
     url: "/save",
-    data: {"text":$("textarea#fav-list-edit").val()},
+    data: {
+      "tv":$("textarea#fav-list-edit").val(),
+      "rad":$("textarea#fav-list-radio-edit").val(),
+    },
     success: function(){
       // Reload and show favorites
       location.reload(true);
-      $(".remote-screen").hide();
-      $("#favorites-content").show();
     },
     error: function(){
       alert("ERROR: Could not save changes.");
@@ -151,15 +181,27 @@ $("#save-button").click(function(){
 
 // Favorites buttons logic and next function
 $("#NEXT_FAVORITE").click(function() {
-  changeFavorite(active+1);
+  changeFavorite(active+1,true);
 });
 
 $("#LAST_FAVORITE").click(function() {
-  changeFavorite(active-1);
+  changeFavorite(active-1,true;
 });
 
 /* Change active favorite button and send digits */
-function changeFavorite(listNumber) {
+function changeFavorite(listNumber,tv) {
+  var lines, fav, active;
+  if (tv) {
+    lines = linesTV;
+    fav = "TV";
+    active = activeTV;
+  }
+  else {
+    lines = linesRadio;
+    fav = "RA";
+    active = activeRadio;
+  }
+
   // Ensure active remains integer
   var num = parseInt(listNumber);
   
@@ -168,9 +210,9 @@ function changeFavorite(listNumber) {
   if (num == lines.length) num = 0;
 
   // Change buttons and active
-  $("#fav"+active).removeClass("btn-primary").addClass("btn-default");
+  $("#"+fav+active).removeClass("btn-primary").addClass("btn-default");
   active = num;
-  $("#fav"+active).removeClass("btn-default").addClass("btn-primary");
+  $("#"+fav+active).removeClass("btn-default").addClass("btn-primary");
   
   // Send each digit of active
   var channelNumber = String(lines[active][1]);

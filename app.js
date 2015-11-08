@@ -39,13 +39,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Define POST request for /save
 app.post('/save', function (req, res) {
-  console.log(req.body);
-  fs.writeFile(__dirname+"/html/favs.txt", req.body.text, function(err) {
+  var successTV = false;
+  var successRadio = false;
+
+  // Write TV favs
+  fs.writeFile(__dirname+"/html/favs.txt", req.body.tv, function(err) {
     if(err)
       return console.log(err);
     else
-      res.send("Successfully saved changes.");
+      successTV = true;
   });
+
+  // Write Radio favs
+  fs.writeFile(__dirname+"/html/favs-radio.txt", req.body.rad, function(err) {
+    if(err)
+      return console.log(err);
+    else
+      successRadio = true;
+  });
+
+  // Sent successfull message
+  res.send("Successfully saved favorites");
 });
 
 // Listen on port 3000

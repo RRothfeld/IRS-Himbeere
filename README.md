@@ -29,6 +29,8 @@ The WiFi dongle goes into a sleep mode if inactive for longer periods of time. T
 
 Now, install LIRC as described in [Alex Bain's article](http://alexba.in/blog/2013/01/06/setting-up-lirc-on-the-raspberrypi/) and set up lircd.conf for your TV/remote constellation. My own can be found in the /archive folder within this repository.
 
+If distracting, the Raspberry Pi's LEDs can be turned off by issuing the command `sudo nano /sys/class/leds/led0/brightness` and setting the value to `0`.
+
 ## Application Installation
 With the Raspberry Pi and LIRC all set up, it is time to install the application itself:
  1. Log into your Raspberry Pi via SSH: `ssh pi@192.168.2.30` (replacing the IP with the static IP you chose for your Raspberry Pi)

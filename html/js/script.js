@@ -17,36 +17,24 @@ var size = findBootstrapEnvironment();
 
 /* General Scripts */
 $(".remote-screen a").click(function(event) {
-  //var $this = $(this);
-  document.body.style.opacity = "0.5";
-
   $.ajax({
     url: $(this).attr("href"),
-  }).done(function(data) {
-    document.body.style.opacity="1";
-  });   
+  });
   event.preventDefault();
   return true;
 });
    
 function sendKey(remote_name, key_name) {
-  document.body.style.opacity = "0.5";
   $.ajax({
     url: "/send/"+remote_name+"/"+key_name,   
-  }).done(function(data) {
-    document.body.style.opacity="1";
   }); 
 }
 
 /* Top Navigation */
 $(".nav-btn").click(function(event) {
-  document.body.style.opacity = "0.5";
   $(".remote-screen").hide();
-
   var code = $(this).attr('id');
   $("#"+code+"-content").show();
-
-  document.body.style.opacity = "1";
 });
 
 /* Yamaha Multi-Buttons */
@@ -181,11 +169,11 @@ $("#save-button").click(function(){
 
 // Favorites buttons logic and next function
 $("#NEXT_FAVORITE").click(function() {
-  changeFavorite(active+1,true);
+  changeFavorite(activeTV+1,true);
 });
 
 $("#LAST_FAVORITE").click(function() {
-  changeFavorite(active-1,true);
+  changeFavorite(activeTV-1,true);
 });
 
 /* Change active favorite button and send digits */
@@ -203,9 +191,6 @@ function changeFavorite(listNumber,tv) {
     active = activeRadio;
   }
 
-  // TEST
-  console.log(fav+active);
-
   // Ensure active remains integer
   var num = parseInt(listNumber);
   
@@ -222,9 +207,6 @@ function changeFavorite(listNumber,tv) {
   var channelNumber = String(lines[active][1]);
   i = 0;
   function sendDigit() {
-    // TEST
-    console.log("send: "+i+"    "+channelNumber[i]);
-
     sendKey(thomson,"KEY_"+channelNumber[i]);
     setTimeout(function() {
       i++;
@@ -235,6 +217,11 @@ function changeFavorite(listNumber,tv) {
     }, 200); // 200ms wait between digits
   };
   sendDigit();
+
+  if (tv)
+    activeTV = active;
+  else
+    activeRadio = active;
 }
 
 /* Help function to detect bootstrap change */

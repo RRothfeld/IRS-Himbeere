@@ -31,14 +31,15 @@ Now, install LIRC as described in [Alex Bain's article](http://alexba.in/blog/20
 
 ## Application Installation
 With the Raspberry Pi and LIRC all set up, it is time to install the application itself:
- 1. Have [Node.js](https://nodejs.org/) and [git](https://git-scm.com/) installed
- 2. Clone this repository: `git clone https://github.com/RRothfeld/IRS-Himbeere.git` 
- 3. Change into the created folder: `cd IRS-Himbeere`
- 4. Install node modules: `npm install`
- 5. The application is now ready to run, yet there are two options to start the web server: 
-	 A. The quick, yet temporary, option: `node app.js`
-	 B. The permanent option, which will automatically start the webserver with the Raspberry Pi booting. Execute `sudo nano /etc/rc.local`, add `/home/pi/IRS-Himbeere/node_modules/forever/bin/forever start /home/pi/IRS-Himbeere/app.js &` before `before exit 0`, and save (CTRL+X, then Y, then ENTER). Conclude by restarting the Raspberry Pi: `sudo shutdown -r 0`.
- 6. Open [http://localhost:3000/](http://localhost:3000/) in your web browser
+ 1. Log into your Raspberry Pi via SSH: `ssh pi@192.168.2.30` (replacing the IP with the static IP you chose for your Raspberry Pi)
+ 2. Install [Node.js](https://nodejs.org/) and [git](https://git-scm.com/)
+ 3. Clone this repository: `git clone https://github.com/RRothfeld/IRS-Himbeere.git` 
+ 4. Change into the created folder: `cd IRS-Himbeere`
+ 5. Install node modules: `npm install`
+ 6. The application is now ready to run, yet there are two options to start the web server: 
+A. The quick, yet temporary, option: `node app.js`
+B. The permanent option, which will automatically start the webserver with the Raspberry Pi booting. Execute `sudo nano /etc/rc.local`, add `/home/pi/IRS-Himbeere/node_modules/forever/bin/forever start /home/pi/IRS-Himbeere/app.js &` before `before exit 0`, and save (CTRL+X, then Y, then ENTER). Conclude by restarting the Raspberry Pi: `sudo shutdown -r 0`.
+ 7. Open [http://192.168.2.30:3000/](http://192.168.2.30:3000/) (replacing the IP with the static IP you chose for your Raspberry Pi) in your web browser
 
 ## Updating the Raspberry Pi after repository updates
 **Important:** Be sure to make a copy of your favroites list, to prevent loss of all your saved channels!
@@ -46,6 +47,6 @@ With the Raspberry Pi and LIRC all set up, it is time to install the application
  1. Connect to the Raspberry Pi: `ssh pi@192.168.2.30` (replacing the IP with the static IP you chose for your Raspberry Pi)
  2. Change into the application's directory: `cd IRS-Himbeere/`
  3. Retrieve updates from this git repository:
-	 A. Execute `git pull`
-	 B. If the above does not work as changes have been made, you can force your local application to be overwritten with the repository's state (make sure to save your favorites!) via: `git fetch --all && git reset --hard origin/master`
+A. Execute `git pull`
+B. If the above does not work as changes have been made, you can force your local application to be overwritten with the repository's state (make sure to save your favorites!) via: `git fetch --all && git reset --hard origin/master`
  4.  If files outside the IRS-Himbeere/html folder have been updated, restart the Raspberry Pi: `sudo shutdown -r 0`

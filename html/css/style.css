@@ -170,6 +170,6 @@ body {
 }
 .fav-pic {
     margin-right: 15px;
-    width: 50px;
+    max-width: 150px;
     height: 50px;
 }

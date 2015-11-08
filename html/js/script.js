@@ -177,7 +177,13 @@ function changeFavorite(listNumber) {
   i = 0;
   function sendDigit() {
     sendKey(thomson,"KEY_"+channelNumber[i]);
-    setTimeout(function() { i++; if (i < channelNumber.length) {sendDigit();} else {i=0} }, 250); // 250ms
+    setTimeout(function() {
+      i++;
+      if (i < channelNumber.length)
+        sendDigit(); // recursive
+      else
+        i=0;
+    }, 150); // 150ms wait between digits
   };
   sendDigit();
 }

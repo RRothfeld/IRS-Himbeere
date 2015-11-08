@@ -185,7 +185,7 @@ $("#NEXT_FAVORITE").click(function() {
 });
 
 $("#LAST_FAVORITE").click(function() {
-  changeFavorite(active-1,true;
+  changeFavorite(active-1,true);
 });
 
 /* Change active favorite button and send digits */

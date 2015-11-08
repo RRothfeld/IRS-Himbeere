@@ -64,6 +64,7 @@ $("#"+yamaha+"-KEY_VOLUMEDOWN-8x").click(function() {
 
 /* Favorites List & Buttons */
 $(document).ready(function() {
+  // Get TV favs
   $.ajax({
     type: "GET",
     url: "favs.txt",
@@ -73,9 +74,8 @@ $(document).ready(function() {
       processData(favTV,true);
     }
   });
-});
 
-$(document).ready(function() {
+  // Get Radio favs
   $.ajax({
     type: "GET",
     url: "favs-radio.txt",
@@ -119,7 +119,7 @@ function processData(data,tv) {
       code = "RA";
 
     var buttonHTML = "<a class=\"btn col-xs-5 col-md-3 "
-      +"btn-lg btn-huge btn-fav "+btnType
+      +"btn-lg btn-huge btn-fav "+btnType+" "+code
       +"\" id=\""+code+i
       +"\" href=\"#\">";
     // Add image if URL existent
@@ -151,7 +151,7 @@ function processData(data,tv) {
     $("#fav-list-radio-edit").append(favRadio);
 
   // Activate favorite buttons
-  $(".btn-fav").click(function() {
+  $("."+code).click(function() {
     var id = $(this).attr('id');
     var tv = true;
     if (id.substr(0,2) != "TV")
@@ -190,6 +190,7 @@ $("#LAST_FAVORITE").click(function() {
 
 /* Change active favorite button and send digits */
 function changeFavorite(listNumber,tv) {
+  // Define mode
   var lines, fav, active;
   if (tv) {
     lines = linesTV;
@@ -201,6 +202,9 @@ function changeFavorite(listNumber,tv) {
     fav = "RA";
     active = activeRadio;
   }
+
+  // TEST
+  console.log(fav+active);
 
   // Ensure active remains integer
   var num = parseInt(listNumber);
@@ -218,6 +222,9 @@ function changeFavorite(listNumber,tv) {
   var channelNumber = String(lines[active][1]);
   i = 0;
   function sendDigit() {
+    // TEST
+    console.log("send: "+i+"    "+channelNumber[i]);
+
     sendKey(thomson,"KEY_"+channelNumber[i]);
     setTimeout(function() {
       i++;
@@ -225,7 +232,7 @@ function changeFavorite(listNumber,tv) {
         sendDigit(); // recursive
       else
         i=0;
-    }, 150); // 150ms wait between digits
+    }, 200); // 200ms wait between digits
   };
   sendDigit();
 }

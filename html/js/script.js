@@ -1,6 +1,7 @@
 /* Global variables */
 var thomson = "Thomson_DCI1500GK";
 var yamaha = "Yamaha_RAX23_WV50020";
+var samsung = "Samsung_00084Q";
 
 // TV varibales
 var activeTV = 0; // Active favorite
@@ -37,7 +38,7 @@ $(".nav-btn").click(function(event) {
   $("#"+code+"-content").show();
 });
 
-/* Yamaha Multi-Buttons */
+/* Multi-Buttons */
 $("#"+yamaha+"-KEY_VOLUMEUP-8x").click(function() {
   for (var i = 8; i > 0; i--) {
     sendKey(yamaha,"KEY_VOLUMEUP");
@@ -48,6 +49,12 @@ $("#"+yamaha+"-KEY_VOLUMEDOWN-8x").click(function() {
   for (var i = 8; i > 0; i--) {
     sendKey(yamaha,"KEY_VOLUMEDOWN");
   };
+});
+
+$("#ALLDEVICES-KEY_POWER").click(function() {
+  sendKey(thomson,"KEY_POWER");
+  setTimeout(function(){sendKey(samsung,"KEY_POWER");}, 4000);
+  setTimeout(function(){sendKey(yamaha,"KEY_POWER");}, 8000);
 });
 
 /* Favorites List & Buttons */

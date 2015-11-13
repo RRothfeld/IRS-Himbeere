@@ -292,4 +292,4 @@ function showNewPage(i) {
   $("#"+pages[i]+"-content").show();
 };
 
-$.event.special.swipe.horizontalDistanceThreshold = (screen.availWidth) / 3;
+$.event.special.swipe.horizontalDistanceThreshold = (screen.availWidth) / 5;

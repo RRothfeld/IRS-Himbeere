@@ -18,6 +18,9 @@ var linesRadio = []; // Internal favorites list
 // Check Bootstrap state
 var size = findBootstrapEnvironment();
 
+// Hide Jquery Mobile loading message
+$.mobile.loading().hide();
+
 /* General Scripts */
 $('.remote-screen').each(function() {
   var id = this.id;
@@ -260,14 +263,14 @@ function findBootstrapEnvironment() {
 }
 
 /* Enable swipe actions */
-$("body").on("swiperight", function() {
+$("body").on("swipeleft", function() {
   var activePage = findActivePage();
   var newPage = activePage + 1;
   if (newPage < pages.length)
     showNewPage(newPage);
 });
 
-$("body").on("swipeleft", function() {
+$("body").on("swiperight", function() {
   var activePage = findActivePage();
   var newPage = activePage - 1;
   if (newPage > -1)
@@ -288,3 +291,5 @@ function showNewPage(i) {
   $(".remote-screen").hide();
   $("#"+pages[i]+"-content").show();
 };
+
+$.event.special.swipe.horizontalDistanceThreshold = (screen.availWidth) / 3;

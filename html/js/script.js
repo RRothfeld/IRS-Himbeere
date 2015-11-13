@@ -61,10 +61,16 @@ $("#"+yamaha+"-KEY_VOLUMEDOWN-8x").click(function() {
   };
 });
 
-$("#ALLDEVICES-KEY_POWER").click(function() {
+$("#ALLDEVICES-KEY_POWER-ON").click(function() {
   sendKey(thomson,"KEY_POWER");
-  setTimeout(function(){sendKey(samsung,"KEY_POWER");}, 4000);
-  setTimeout(function(){sendKey(yamaha,"KEY_POWER");}, 8000);
+  setTimeout(function(){sendKey(samsung,"KEY_POWER");}, 2000);
+  setTimeout(function(){sendKey(yamaha,"KEY_POWER");}, 4000);
+});
+
+$("#ALLDEVICES-KEY_POWER-OFF").click(function() {
+  sendKey(yamaha,"KEY_POWER");
+  setTimeout(function(){sendKey(samsung,"KEY_POWER");}, 2000);
+  setTimeout(function(){sendKey(thomson,"KEY_POWER");}, 4000);
 });
 
 /* Favorites List & Buttons */
@@ -292,4 +298,4 @@ function showNewPage(i) {
   $("#"+pages[i]+"-content").show();
 };
 
-$.event.special.swipe.horizontalDistanceThreshold = (screen.availWidth) / 5;
+$.event.special.swipe.horizontalDistanceThreshold = (screen.availWidth) / 10;

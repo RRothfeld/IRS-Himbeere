@@ -2,6 +2,8 @@
 var thomson = "Thomson_DCI1500GK";
 var yamaha = "Yamaha_RAX23_WV50020";
 var samsung = "Samsung_00084Q";
+var pages = [];
+var postText = "-content";
 
 // TV varibales
 var activeTV = 0; // Active favorite
@@ -17,6 +19,11 @@ var linesRadio = []; // Internal favorites list
 var size = findBootstrapEnvironment();
 
 /* General Scripts */
+$('.remote-screen').each(function() {
+  var id = this.id;
+  pages.push(id.substr(0,id.length-postText.length));
+});
+
 $(".remote-screen a").click(function(event) {
   $.ajax({
     url: $(this).attr("href"),
@@ -251,3 +258,33 @@ function findBootstrapEnvironment() {
   }
   return "";
 }
+
+/* Enable swipe actions */
+$("body").on("swiperight", function() {
+  var activePage = findActivePage();
+  var newPage = activePage + 1;
+  if (newPage < pages.length)
+    showNewPage(newPage);
+});
+
+$("body").on("swipeleft", function() {
+  var activePage = findActivePage();
+  var newPage = activePage - 1;
+  if (newPage > -1)
+    showNewPage(newPage);
+});
+
+function findActivePage() {
+  var code;
+  $(".remote-screen").each(function() {
+    if ($(this).is(":visible"))
+      code = $(this).attr('id');
+  });
+  code = code.substr(0,code.length-postText.length);
+  return pages.indexOf(code);
+};
+
+function showNewPage(i) {
+  $(".remote-screen").hide();
+  $("#"+pages[i]+"-content").show();
+};

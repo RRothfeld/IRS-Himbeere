@@ -16,16 +16,17 @@ var favRadio; // External favorites list
 var linesRadio = []; // Internal favorites list
 
 // Check Bootstrap state
-var size = findBootstrapEnvironment();
+//var size = findBootstrapEnvironment();
+var size = "xs";
 
 // Hide Jquery Mobile loading message
 $.mobile.loading().hide();
 
 /* General Scripts */
-// $('.remote-screen-swipe').each(function() {
-//   var id = this.id;
-//   pages.push(id.substr(0,id.length-postText.length));
-// });
+$('.remote-screen-swipe').each(function() {
+  var id = this.id;
+  pages.push(id.substr(0,id.length-postText.length));
+});
 
 $(".remote-screen a").click(function(event) {
   $.ajax({

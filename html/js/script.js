@@ -16,8 +16,7 @@ var favRadio; // External favorites list
 var linesRadio = []; // Internal favorites list
 
 // Check Bootstrap state
-//var size = findBootstrapEnvironment();
-var size = "xs";
+var size = findBootstrapEnvironment();
 
 // Hide Jquery Mobile loading message
 $.mobile.loading().hide();
@@ -75,29 +74,29 @@ $("#ALLDEVICES-KEY_POWER-OFF").click(function() {
 });
 
 /* Favorites List & Buttons */
-$(document).ready(function() {
-  // Get TV favs
-  $.ajax({
-    type: "GET",
-    url: "favs.txt",
-    dataType: "text",
-    success: function(data) {
-      favTV = data;
-      processData(favTV,true);
-    }
-  });
+// $(document).ready(function() {
+//   // Get TV favs
+//   $.ajax({
+//     type: "GET",
+//     url: "favs.txt",
+//     dataType: "text",
+//     success: function(data) {
+//       favTV = data;
+//       processData(favTV,true);
+//     }
+//   });
 
-  // Get Radio favs
-  $.ajax({
-    type: "GET",
-    url: "favs-radio.txt",
-    dataType: "text",
-    success: function(data) {
-      favRadio = data;
-      processData(favRadio,false);
-    }
-  });
-});
+//   // Get Radio favs
+//   $.ajax({
+//     type: "GET",
+//     url: "favs-radio.txt",
+//     dataType: "text",
+//     success: function(data) {
+//       favRadio = data;
+//       processData(favRadio,false);
+//     }
+//   });
+// });
 
 function processData(data,tv) {
   // Setup variables

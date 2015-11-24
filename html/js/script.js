@@ -181,7 +181,7 @@ $("#save-button").click(function(){
       "rad":$("textarea#fav-list-radio-edit").val(),
     },
     success: function(){
-      // Reload and show favorites
+      // Reload
       location.reload(true);
     },
     error: function(){

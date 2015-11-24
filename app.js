@@ -59,7 +59,8 @@ app.post('/save', function (req, res) {
   });
 
   // Sent successfull message
-  res.send("Successfully saved favorites");
+  if (successTV && successRadio)
+    res.status(200).send("Successfully saved favorites");
 });
 
 // Listen on port 3000

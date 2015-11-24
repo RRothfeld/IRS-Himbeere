@@ -22,7 +22,7 @@ var size = findBootstrapEnvironment();
 $.mobile.loading().hide();
 
 /* General Scripts */
-$('.remote-screen').each(function() {
+$('.remote-screen-swipe').each(function() {
   var id = this.id;
   pages.push(id.substr(0,id.length-postText.length));
 });
@@ -282,6 +282,8 @@ $("body").on("swiperight", function() {
   if (newPage > -1)
     showNewPage(newPage);
 });
+
+$("#edit-fav-content").on('swipeleft swiperight', function(e){});
 
 function findActivePage() {
   var code;

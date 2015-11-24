@@ -19,13 +19,13 @@ var linesRadio = []; // Internal favorites list
 var size = findBootstrapEnvironment();
 
 // Hide Jquery Mobile loading message
-//$.mobile.loading().hide();
+$.mobile.loading().hide();
 
 /* General Scripts */
-$('.remote-screen-swipe').each(function() {
-  var id = this.id;
-  pages.push(id.substr(0,id.length-postText.length));
-});
+// $('.remote-screen-swipe').each(function() {
+//   var id = this.id;
+//   pages.push(id.substr(0,id.length-postText.length));
+// });
 
 $(".remote-screen a").click(function(event) {
   $.ajax({

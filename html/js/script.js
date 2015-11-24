@@ -19,7 +19,7 @@ var linesRadio = []; // Internal favorites list
 var size = findBootstrapEnvironment();
 
 // Hide Jquery Mobile loading message
-$.mobile.loading().hide();
+//$.mobile.loading().hide();
 
 /* General Scripts */
 $('.remote-screen-swipe').each(function() {

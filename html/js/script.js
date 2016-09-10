@@ -183,6 +183,7 @@ $("#save-button").click(function(){
   });
 
   // Reload
+  setTimeout(function(){}, 500);
   window.location.reload(true);
 });
 

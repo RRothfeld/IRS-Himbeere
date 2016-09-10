@@ -183,8 +183,7 @@ $("#save-button").click(function(){
   });
 
   // Reload
-  setTimeout(function(){}, 500);
-  window.location.reload(true);
+  alert("Changes saved. Please reload the page.");
 });
 
 // Favorites buttons logic and next function

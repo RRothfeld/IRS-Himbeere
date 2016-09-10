@@ -7,12 +7,10 @@ var postText = "-content";
 
 // TV varibales
 var activeTV = 0; // Active favorite
-var favTV; // External favorites list
 var linesTV = []; // Internal favorites list
 
 // Radio varibales
 var activeRadio = 0; // Active favorite
-var favRadio; // External favorites list
 var linesRadio = []; // Internal favorites list
 
 // Check Bootstrap state
@@ -81,8 +79,7 @@ $(document).ready(function() {
     url: "favs.txt",
     dataType: "text",
     success: function(data) {
-      favTV = data;
-      processData(favTV,true);
+      processData(data,true);
     }
   });
 
@@ -92,8 +89,7 @@ $(document).ready(function() {
     url: "favs-radio.txt",
     dataType: "text",
     success: function(data) {
-      favRadio = data;
-      processData(favRadio,false);
+      processData(data,false);
     }
   });
 });
@@ -157,9 +153,9 @@ function processData(data,tv) {
 
   // Populate placeholder text for editing favorites
   if (tv)
-    $("#fav-list-edit").append(favTV);
+    $("#fav-list-edit").append(data);
   else
-    $("#fav-list-radio-edit").append(favRadio);
+    $("#fav-list-radio-edit").append(data);
 
   // Activate favorite buttons
   $("."+code).click(function() {

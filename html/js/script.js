@@ -157,9 +157,9 @@ function processData(data,tv) {
 
   // Populate placeholder text for editing favorites
   if (tv)
-    $("#fav-list-edit").append(favTV);
+    $("#fav-list-edit").html(favTV);
   else
-    $("#fav-list-radio-edit").append(favRadio);
+    $("#fav-list-radio-edit").html(favRadio);
 
   // Activate favorite buttons
   $("."+code).click(function() {
@@ -182,7 +182,7 @@ $("#save-button").click(function(){
     },
     success: function(){
       // Reload
-      location.reload(true);
+      window.location.reload(true);
     },
     error: function(){
       alert("ERROR: Could not save changes.");

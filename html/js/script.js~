@@ -179,11 +179,15 @@ $("#save-button").click(function(){
     data: {
       "tv":$("textarea#fav-list-edit").val(),
       "rad":$("textarea#fav-list-radio-edit").val(),
+    },
+    success: function(){
+      // Reload
+      window.location.reload(true);
+    },
+    error: function(){
+      alert("ERROR: Could not save changes.");
     }
   });
-
-  // Reload
-  window.location.reload(true);
 });
 
 // Favorites buttons logic and next function

@@ -1,11 +1,11 @@
 /**
  * app.js
- * 
+ *
  * IR Remote Web Service
- * 
+ *
  * based on:
  * @author Michael Vartan
- * @version 1.0.0 
+ * @version 1.0.0
  */
 
 var express = require('express');
@@ -28,7 +28,20 @@ app.get('/send/:device/:key', function(req, res) {
   exec(command, function(error, stdout, stderr){
     if(error)
       res.send("Error sending command");
-    else   
+    else
+      res.send("Successfully sent command");
+  });
+});
+
+app.get('/exec/:key', function(req, res) {
+  var key = req.params.key;
+
+  // send command to irsend
+  var command = key;
+  exec(command, function(error, stdout, stderr){
+    if(error)
+      res.send("Error sending command");
+    else
       res.send("Successfully sent command");
   });
 });

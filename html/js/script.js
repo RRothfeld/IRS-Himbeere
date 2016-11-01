@@ -34,11 +34,17 @@ $(".remote-screen a").click(function(event) {
   event.preventDefault();
   return true;
 });
-   
+
 function sendKey(remote_name, key_name) {
   $.ajax({
-    url: "/send/"+remote_name+"/"+key_name,   
-  }); 
+    url: "/send/"+remote_name+"/"+key_name,
+  });
+}
+
+function sendCommand(command) {
+  $.ajax({
+    url: "/exec/"+command,
+  });
 }
 
 /* Top Navigation */
@@ -71,6 +77,11 @@ $("#ALLDEVICES-KEY_POWER-OFF").click(function() {
   sendKey(yamaha,"KEY_POWER");
   setTimeout(function(){sendKey(samsung,"KEY_POWER");}, 2000);
   setTimeout(function(){sendKey(thomson,"KEY_POWER");}, 4000);
+  setTimeout(function(){sendCommand("sudo poweroff");}, 6000);
+});
+
+$("#RASPBERRY_POWER-OFF").click(function() {
+  sendCommand("sudo poweroff");
 });
 
 /* Favorites List & Buttons */
@@ -144,13 +155,13 @@ function processData(data,tv) {
 
     // Append a button for favorite
     var appendTo;
-    if (tv) 
+    if (tv)
       appendTo = "#favorites-list";
     else
       appendTo = "#favorites-list-radio";
     $(appendTo).append(buttonHTML);
 
-    // Append spacer on every second button if Bootstrap is xsmall    
+    // Append spacer on every second button if Bootstrap is xsmall
     if(!(size=="xs" && i%2!=0))
       $(appendTo).append("<div class=\"col-xs-1\"></div>");
   };
@@ -212,7 +223,7 @@ function changeFavorite(listNumber,tv) {
 
   // Ensure active remains integer
   var num = parseInt(listNumber);
-  
+
   // Continuously run through favs
   if (num < 0) num = lines.length - 1;
   if (num == lines.length) num = 0;
@@ -221,7 +232,7 @@ function changeFavorite(listNumber,tv) {
   $("#"+fav+active).removeClass("btn-primary").addClass("btn-default");
   active = num;
   $("#"+fav+active).removeClass("btn-default").addClass("btn-primary");
-  
+
   // Send each digit of active
   var channelNumber = String(lines[active][1]);
   i = 0;
@@ -245,7 +256,7 @@ function changeFavorite(listNumber,tv) {
 
 /* Help function to detect bootstrap change */
 function findBootstrapEnvironment() {
-  var envs = ["xs", "sm", "md", "lg"],    
+  var envs = ["xs", "sm", "md", "lg"],
       doc = window.document,
       temp = doc.createElement("div");
 

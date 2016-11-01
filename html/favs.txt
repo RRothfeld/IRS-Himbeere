@@ -1,7 +1,7 @@
 #Name,Number,Picture URL (optional; optimal: 50x50px)
 ARD,101,http://www.o-ton.ch/wp-content/uploads/2010/04/ard_logo1.png
 ZDF,102,http://www.itopnews.de/wp-content/uploads/2014/06/ZDF-mediathek-Icon-neu.png
-3Sat,109,http://www.noraalaml.com/wp-content/uploads/2015/08/unnamed-300x169.jpg
+3Sat,109,https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/3sat-Logo.svg/200px-3sat-Logo.svg.png
 Arte,110,http://t0.gstatic.com/images?q=tbn:ANd9GcTkQgDSNErzdlEckBBhFlDyAcZRQ2d08ogyBx2bqrIUYDot5MccvVMD5w
 phoenix,552,http://www.stefano-picco.de/gfx/grafik-phoenix-logo.jpg
 eins|plus,111,http://t2.gstatic.com/images?q=tbn:ANd9GcTAYrBlu6tfIho4c9u_o0SnwXDNJniHSF8rabxwbnOe8UHiZH-fzOQQ

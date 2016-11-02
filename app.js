@@ -33,17 +33,23 @@ app.get('/send/:device/:key', function(req, res) {
   });
 });
 
-app.get('/exec/:key', function(req, res) {
-  var key = req.params.key;
-
+app.get('/exec/:command', function(req, res) {
   // send command to irsend
-  var command = key;
-  exec(command, function(error, stdout, stderr){
-    if(error)
-      res.send("Error sending command");
-    else
-      res.send("Successfully sent command");
-  });
+  var command = req.params.command;
+
+  switch (command) {
+    default:
+      break;
+    case "sudo poweroff":
+      exec(command, function(error, stdout, stderr){
+        if(error)
+          res.send("Error sending command");
+        else
+          res.send("Successfully sent command");
+      });
+      break;
+      // Additional commands can be added here
+  }
 });
 
 // Enable JSON-encoded bodies
